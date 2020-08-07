@@ -5,9 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class PersonVersioningController {
-	
-	
-	
+
 	@GetMapping("/v1/person")
 	public PersonV1 personV1() {
 		return new PersonV1("Manikanth");
@@ -17,38 +15,38 @@ public class PersonVersioningController {
 	public PersonV2 personV2() {
 		return new PersonV2(new Name("Manikanth", "Kappati"));
 	}
-	
-	//Request Parameter Versioning
+
+	// Request Parameter Versioning
 	@GetMapping(value = "/person/param", params = "version=1")
 	public PersonV1 paramV1() {
 		return new PersonV1("Manikanth");
 	}
-	
-	//Request Parameter Versioning
+
+	// Request Parameter Versioning
 	@GetMapping(value = "/person/param", params = "version=2")
 	public PersonV2 paramV2() {
 		return new PersonV2(new Name("Manikanth", "Kappati"));
 	}
-	
-	//Header Versioning
+
+	// Header Versioning
 	@GetMapping(value = "/person/header", headers = "X-API-VERSION=1")
 	public PersonV1 headerV1() {
 		return new PersonV1("Manikanth");
 	}
-	
-	//Header Versioning
+
+	// Header Versioning
 	@GetMapping(value = "/person/header", headers = "X-API-VERSION=2")
 	public PersonV2 headerV2() {
 		return new PersonV2(new Name("Manikanth", "Kappati"));
 	}
-	
-	//MIME Type Versioning. Send Accept type as produces in the headers  
+
+	// MIME Type Versioning. Send Accept type as produces in the headers
 	@GetMapping(value = "/person/produces", produces = "application/vnd.company.app-v1+json")
 	public PersonV1 producesV1() {
 		return new PersonV1("Manikanth");
 	}
-	
-	//MIME Type Versioning. Send Accept type as produces in the headers
+
+	// MIME Type Versioning. Send Accept type as produces in the headers
 	@GetMapping(value = "/person/produces", produces = "application/vnd.company.app-v2+json")
 	public PersonV2 producesV2() {
 		return new PersonV2(new Name("Manikanth", "Kappati"));
